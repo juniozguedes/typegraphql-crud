@@ -2,7 +2,7 @@ import { Field, InputType, Int } from "type-graphql";
 import { Recipe } from "./recipe.model";
 
 @InputType({ description: "New recipe data" })
-export class RecipeInput implements Partial<Recipe> {
+export class RecipeInput{
   @Field()
   title: string;
 
