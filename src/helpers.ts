@@ -4,9 +4,8 @@ import { User, UserModel } from "./users/user.model"
 export async function seedDatabase() {
   const defaultUser = new UserModel({
     email: "test@github.com",
-    nickname: "MichalLytek",
     password: "s3cr3tp4ssw0rd",
-  } as unknown as User);
+  } as User);
   await defaultUser.save();
 
   await RecipeModel.create([

@@ -12,7 +12,7 @@ export class User {
   email: string;
 
   @Property({ required: true })
-  password: string;
+  password: any;
 
   // the "this" definition is required to have the correct types
   public static async findByEmail(this: ReturnModelType<typeof User>, email: string) {

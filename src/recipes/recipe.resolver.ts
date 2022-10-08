@@ -21,7 +21,7 @@ export class RecipeResolver {
 
   @Mutation(returns => Recipe)
   async addRecipe(
-    @Arg("recipe") recipeInput: RecipeInput,
+    @Arg("addRecipe") recipeInput: RecipeInput,
     @Ctx() { user }: Context,
   ): Promise<Recipe> {
     const recipe = new RecipeModel({
