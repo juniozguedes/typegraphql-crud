@@ -5,20 +5,24 @@ import { Field, ObjectType } from "type-graphql";
 @ObjectType()
 export class User {
   @Field()
-  readonly _id: ObjectId;
+  _id: ObjectId;
 
   @Field()
   @Property({ required: true })
   email: string;
 
   @Property({ required: true })
-  password: any;
-
-  // the "this" definition is required to have the correct types
-  public static async findByEmail(this: ReturnModelType<typeof User>, email: string) {
-    return this.find({ email }).exec();
-  }
-
+  password: string;
 }
+
+@ObjectType()
+export class UserResponse {
+  @Field(() => User, { nullable: true })
+  user?: User;
+
+  @Field(() => String, { nullable: true })
+  token?: string;
+}
+
 
 export const UserModel = getModelForClass(User);
