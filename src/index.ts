@@ -11,20 +11,16 @@ import { customAuthChecker } from './auth';
 import * as dotenv from 'dotenv';
 import pino from 'pino';
 
-// replace with your values if needed
-const MONGO_DB_URL = 'mongodb+srv://every:every123@cluster0.dvtkc.mongodb.net/?retryWrites=true&w=majority';
-
 async function bootstrap() {
   const logger = pino();
   dotenv.config();
+  const MONGO_DB_URL = process.env.MONGO_URL;
   try {
     logger.info('Starting bootstrap function');
-
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const mongoose = await connect(MONGO_DB_URL);
 
     //logger.info('Cleaning and seeding database');
-
     // clean and seed database with some data
     //await mongoose.connection.db.dropDatabase();
     //const { defaultUser } = await seedDatabase();
@@ -45,7 +41,7 @@ async function bootstrap() {
 
     logger.info('Starting Server');
     // Start the Apollo server
-    const port = 4000;
+    const port = process.env.PORT || 4000;
     const { url } = await server.listen(port);
     logger.info(`Server is running, GraphQL Playground available at ${url}`);
   } catch (e) {
