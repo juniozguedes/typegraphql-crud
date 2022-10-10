@@ -1,8 +1,7 @@
-import { Field, InputType, Int } from "type-graphql";
-import { Recipe } from "./recipe.model";
+import { Field, InputType } from 'type-graphql';
 
-@InputType({ description: "New recipe data" })
-export class RecipeInput{
+@InputType({ description: 'New recipe data' })
+export class RecipeInput {
   @Field()
   title: string;
 

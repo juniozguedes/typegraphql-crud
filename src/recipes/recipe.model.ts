@@ -1,10 +1,10 @@
-import { prop as Property, getModelForClass } from "@typegoose/typegoose";
-import { ObjectId } from "mongodb"; //Showed in documentation example but not working on Recipe._id
+import { prop as Property, getModelForClass } from '@typegoose/typegoose';
+import { ObjectId } from 'mongodb'; //Showed in documentation example but not working on Recipe._id
 
 //import { Rate } from "./rate";
-import { Ref } from "../types";
-import { Field, ObjectType } from "type-graphql";
-import { User } from "../users/user.model";
+import { Ref } from '../types';
+import { Field, ObjectType } from 'type-graphql';
+import { User } from '../users/user.model';
 
 @ObjectType()
 export class Recipe {
@@ -19,11 +19,7 @@ export class Recipe {
   @Property()
   description?: string;
 
-  //@Field(type => [Rate])
-  //@Property({ type: () => Rate, default: [] })
-  //ratings: Rate[];
-
-  @Field(type => User)
+  @Field(() => User)
   @Property({ ref: User, required: true })
   author: Ref<User>;
 }

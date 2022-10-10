@@ -1,6 +1,6 @@
-import { prop as Property, getModelForClass, ReturnModelType } from "@typegoose/typegoose";
-import { ObjectId } from "mongodb";
-import { Field, ObjectType } from "type-graphql";
+import { prop as Property, getModelForClass } from '@typegoose/typegoose';
+import { ObjectId } from 'mongodb';
+import { Field, ObjectType } from 'type-graphql';
 
 @ObjectType()
 export class User {
@@ -23,6 +23,5 @@ export class UserResponse {
   @Field(() => String, { nullable: true })
   token?: string;
 }
-
 
 export const UserModel = getModelForClass(User);
