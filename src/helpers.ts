@@ -1,4 +1,4 @@
-import { Recipe, RecipeModel } from './recipes/recipe.model';
+import { Task, TaskModel } from './tasks/task.model';
 import { User, UserModel } from './users/user.model';
 
 export async function seedDatabase() {
@@ -8,17 +8,19 @@ export async function seedDatabase() {
   } as User);
   await defaultUser.save();
 
-  await RecipeModel.create([
+  /*   await TaskModel.create([
     {
-      title: 'Recipe 1',
+      title: 'Task 1',
       description: 'Desc 1',
       author: defaultUser._id,
+      status: 'to_do',
     },
     {
-      title: 'Recipe 2',
+      title: 'Task 2',
       author: defaultUser._id,
+      status: 'to_do',
     },
-  ] as unknown as Recipe[]);
+  ] as unknown as Task[]); */
 
   return { defaultUser };
 }

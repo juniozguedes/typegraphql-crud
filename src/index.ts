@@ -1,6 +1,6 @@
 import { buildSchema } from 'type-graphql';
 import 'reflect-metadata';
-import { RecipeResolver } from './recipes/recipe.resolver';
+import { TaskResolver } from './tasks/task.resolver';
 import { ApolloServer } from 'apollo-server';
 import { connect } from 'mongoose';
 import { TypegooseMiddleware } from './typegoose-middleware';
@@ -23,14 +23,14 @@ async function bootstrap() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const mongoose = await connect(MONGO_DB_URL);
 
-    //logger.info('Cleaning and seeding database')
+    //logger.info('Cleaning and seeding database');
 
     // clean and seed database with some data
     //await mongoose.connection.db.dropDatabase();
     //const { defaultUser } = await seedDatabase();
 
     const schema = await buildSchema({
-      resolvers: [RecipeResolver, UserResolver],
+      resolvers: [TaskResolver, UserResolver],
       globalMiddlewares: [TypegooseMiddleware],
       scalarsMap: [{ type: ObjectId, scalar: ObjectIdScalar }],
       validate: false,
