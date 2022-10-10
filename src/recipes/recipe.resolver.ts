@@ -16,8 +16,8 @@ export class RecipeResolver {
 
   @Authorized()
   @Query(() => [Recipe])
-  async recipes(): Promise<Recipe[]> {
-    return await RecipeModel.find({});
+  async recipes(@Ctx() ctx: Context): Promise<Recipe[]> {
+    return await RecipeModel.find({ author: ctx.user });
   }
 
   @Authorized()
