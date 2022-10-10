@@ -9,7 +9,6 @@ const logger = pino();
 export const customAuthChecker: AuthChecker<Context> = async ({ context }) => {
   logger.info('Checking authorization');
   const authorization = context.req.headers.authorization;
-  console.log('autooooo', authorization);
   if (!authorization) return false;
 
   try {
@@ -21,7 +20,6 @@ export const customAuthChecker: AuthChecker<Context> = async ({ context }) => {
     return false;
   }
 
-  console.log('cococooo', context.payload);
   const user = await UserModel.findById(context.payload.id);
   if (!user) return false;
   context.user = user;
