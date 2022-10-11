@@ -1,6 +1,4 @@
-import { ObjectId } from 'mongodb';
-import { Arg, Mutation, Query, Resolver } from 'type-graphql';
-import { ObjectIdScalar } from '../object-id.scalar';
+import { Arg, Mutation, Resolver } from 'type-graphql';
 import { RegisterUserInput } from './user.input';
 import { User, UserModel, UserResponse } from './user.model';
 import * as jwt from 'jsonwebtoken';
@@ -11,19 +9,6 @@ import pino from 'pino';
 const logger = pino();
 @Resolver(() => User)
 export class UserResolver {
-  @Query(() => User, { nullable: true })
-  user(
-    @Arg('userId', () => ObjectIdScalar)
-    userId: ObjectId,
-  ) {
-    return UserModel.findById(userId);
-  }
-
-  @Query(() => [User])
-  async users(): Promise<User[]> {
-    return await UserModel.find({});
-  }
-
   @Mutation(() => UserResponse)
   async registerUser(@Arg('registerUser') userInput: RegisterUserInput): Promise<UserResponse> {
     logger.info('Checking if user exists in database');
@@ -48,6 +33,8 @@ export class UserResolver {
     } as User);
 
     await newUser.save();
+    logger.info('User created');
+
     // 3. store user id on the token payload
     const payload = {
       id: newUser._id,

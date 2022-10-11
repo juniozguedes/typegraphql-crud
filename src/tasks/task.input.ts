@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import { Field, InputType, registerEnumType } from 'type-graphql';
+import { Field, InputType } from 'type-graphql';
 import { Status } from './status.enum';
 
 @InputType({ description: 'New task data' })
@@ -14,7 +14,7 @@ export class TaskInput {
   status: Status;
 }
 
-@InputType({ description: 'New task data' })
+@InputType({ description: 'Update task Status data' })
 export class updateTaskStatusInput {
   @Field()
   id: ObjectId;

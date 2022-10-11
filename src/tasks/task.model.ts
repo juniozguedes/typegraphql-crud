@@ -1,7 +1,6 @@
 import { prop as Property, getModelForClass } from '@typegoose/typegoose';
 import { ObjectId } from 'mongodb'; //Showed in documentation example but not working on Recipe._id
 
-import { Ref } from '../types';
 import { Field, ObjectType } from 'type-graphql';
 import { User } from '../users/user.model';
 import { Status } from './status.enum';
