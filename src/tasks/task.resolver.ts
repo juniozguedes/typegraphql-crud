@@ -1,5 +1,5 @@
 import { Arg, Authorized, Ctx, Mutation, Query, Resolver } from 'type-graphql';
-import { Context } from '../context';
+import { Context } from '../middlewares/context';
 import { UserModel } from '../users/user.model';
 import { TaskInput, updateTaskStatusInput } from './task.input';
 import { Task, TaskModel, TaskResponse } from './task.model';

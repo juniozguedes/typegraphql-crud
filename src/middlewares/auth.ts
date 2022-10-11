@@ -1,6 +1,6 @@
 import { AuthChecker } from 'type-graphql';
 import { AccessTokenPayload, Context } from './context';
-import { UserModel } from './users/user.model';
+import { UserModel } from '../users/user.model';
 import pino from 'pino';
 
 import * as jwt from 'jsonwebtoken';

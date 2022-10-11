@@ -2,28 +2,23 @@ import { buildSchema } from 'type-graphql';
 import 'reflect-metadata';
 import { TaskResolver } from './tasks/task.resolver';
 import { ApolloServer } from 'apollo-server';
-import { connect } from 'mongoose';
-import { TypegooseMiddleware } from './typegoose-middleware';
+import { TypegooseMiddleware } from './middlewares/typegoose-middleware';
 import { ObjectId } from 'mongodb';
-import { ObjectIdScalar } from './object-id.scalar';
+import { ObjectIdScalar } from './database/object-id.scalar';
 import { UserResolver } from './users/user.resolver';
-import { customAuthChecker } from './auth';
+import { customAuthChecker } from './middlewares/auth';
 import * as dotenv from 'dotenv';
 import pino from 'pino';
+import { connectDb } from './database/db';
 
 async function bootstrap() {
   const logger = pino();
   dotenv.config();
-  const MONGO_DB_URL = process.env.MONGO_URL;
   try {
     logger.info('Starting bootstrap function');
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const mongoose = await connect(MONGO_DB_URL);
 
-    //logger.info('Cleaning and seeding database');
-    // clean and seed database with some data
-    //await mongoose.connection.db.dropDatabase();
-    //const { defaultUser } = await seedDatabase();
+    //Connect to Mongo Database
+    connectDb();
 
     const schema = await buildSchema({
       resolvers: [TaskResolver, UserResolver],

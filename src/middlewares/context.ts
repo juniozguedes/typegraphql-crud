@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { ObjectId } from 'mongodb';
-import { User } from './users/user.model';
+import { User } from '../users/user.model';
 
 export interface Context {
   req: Request;
