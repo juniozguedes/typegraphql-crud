@@ -1,15 +1,9 @@
-import { buildSchema } from 'type-graphql';
 import 'reflect-metadata';
-import { TaskResolver } from './tasks/task.resolver';
 import { ApolloServer } from 'apollo-server';
-import { TypegooseMiddleware } from './middlewares/typegoose-middleware';
-import { ObjectId } from 'mongodb';
-import { ObjectIdScalar } from './database/object-id.scalar';
-import { UserResolver } from './users/user.resolver';
-import { customAuthChecker } from './middlewares/auth';
 import * as dotenv from 'dotenv';
 import pino from 'pino';
 import { connectDb } from './database/db';
+import { createSchema } from './tests-utils/createSchema';
 
 async function bootstrap() {
   const logger = pino();
@@ -18,15 +12,9 @@ async function bootstrap() {
     logger.info('Starting bootstrap function');
 
     //Connect to Mongo Database
-    connectDb();
+    connectDb('production');
 
-    const schema = await buildSchema({
-      resolvers: [TaskResolver, UserResolver],
-      globalMiddlewares: [TypegooseMiddleware],
-      scalarsMap: [{ type: ObjectId, scalar: ObjectIdScalar }],
-      validate: false,
-      authChecker: customAuthChecker,
-    });
+    const schema = await createSchema();
 
     // create mocked context
     //const context: Context = { user: defaultUser };

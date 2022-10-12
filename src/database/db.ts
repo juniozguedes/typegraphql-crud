@@ -6,13 +6,16 @@ const logger = pino();
 
 dotenv.config();
 
-export async function connectDb(environment) {
+export async function connectDb(environment: string) {
   logger.info('Connecting to Mongo Database');
 
   if (environment == 'test') {
     const MONGO_DB_URL = process.env.MONGO_TEST_URL;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const mongoose = await connect(MONGO_DB_URL);
+    logger.info('Cleaning and seeding database');
+    await mongoose.connection.db.dropDatabase();
+
     logger.info('Database connected');
     return mongoose;
   }
