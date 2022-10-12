@@ -36,6 +36,7 @@ export class TaskResolver {
       return { task: null, success: false, message: 'Task does not belong to authenticated user' };
     }
 
+    task.status = updateTaskInput.status;
     await task.save();
     logger.info('Task updated');
     return { task: task, success: true, message: 'Task updated' };
