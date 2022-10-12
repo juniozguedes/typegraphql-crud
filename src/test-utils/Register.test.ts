@@ -2,7 +2,7 @@ import { connectDb } from '../database/db';
 import { gCall } from './gCall';
 
 beforeAll(async () => {
-  await connectDb('test').then(() => process.exit());
+  await connectDb('test');
 });
 
 afterAll(async () => {

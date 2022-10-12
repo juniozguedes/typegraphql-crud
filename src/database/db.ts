@@ -10,7 +10,7 @@ export async function connectDb(environment: string) {
   logger.info('Connecting to Mongo Database');
 
   if (environment == 'test') {
-    const MONGO_DB_URL = process.env.MONGO_TEST_URL;
+    const MONGO_DB_URL = process.env.MONGO_TEST_URL || process.env.MONGO_LOCAL;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const mongoose = await connect(MONGO_DB_URL);
     logger.info('Cleaning and seeding database');
@@ -20,7 +20,7 @@ export async function connectDb(environment: string) {
     return mongoose;
   }
 
-  const MONGO_DB_URL = process.env.MONGO_URL;
+  const MONGO_DB_URL = process.env.MONGO_URL || process.env.MONGO_LOCAL;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const mongoose = await connect(MONGO_DB_URL);

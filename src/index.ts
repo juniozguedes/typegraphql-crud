@@ -3,7 +3,7 @@ import { ApolloServer } from 'apollo-server';
 import * as dotenv from 'dotenv';
 import pino from 'pino';
 import { connectDb } from './database/db';
-import { createSchema } from './tests-utils/createSchema';
+import { createSchema } from './test-utils/createSchema';
 
 async function bootstrap() {
   const logger = pino();
