@@ -124,7 +124,7 @@ Query > Tasks > Insert the Authorization header as: "Bearer eyxxxxxxxx" > Send r
 
 ## 📝 Testing
 
-To run the test script:
+To run the test script, run the server or container and execute the test script in a separated shell:
 
 ```
 npm run test
