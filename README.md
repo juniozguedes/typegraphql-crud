@@ -5,6 +5,10 @@
 Check if you have all requirements to install this project:
 
 - Docker
+- .env file in project root with 3 mandatory vars
+  -ACCESS_TOKEN_SECRET=#SECRET
+  -MONGO_URL=#SECRET
+  -PORT='4000'
 
 ## 🚀 Install
 
@@ -35,6 +39,11 @@ http://localhost:4000/
 ## ☕ Usage Flow
 
 In order to use <Task API Typegraphql project> flow is expected that:
+
+- Create a .env file in the project root with 3 mandatory variables
+  -ACCESS_TOKEN_SECRET=#SECRET
+  -MONGO_URL=#SECRET
+  -PORT='4000'
 
 - A user is registered (if user already exists it can be logged in at Login mutation)
 - A Task is created with the registered user JWT being sent as Authorization header in Apollo Server sandbox (this will make the user owner automatically inside the code) ex.: Bearer ey...
