@@ -30,9 +30,15 @@ After build, the Apollo server will run at:
 http://localhost:4000/
 ```
 
-## ☕ Usage
+## ☕ Usage Flow
 
-In order to use <Task API Typegraphql project>, follow these steps:
+In order to use <Task API Typegraphql project> flow is expected that:
+
+- A user is registered (if user already exists it can be logged in at Login mutation)
+- A Task is created with the registered user JWT being sent as Authorization header in Apollo Server sandbox (this will make the user owner automatically inside the code) ex.: Bearer ey...
+- To check user's tasks hit the tasks query root sendin the desired user JWT as Authorization header
+
+follow these steps:
 
 Register a new user
 
@@ -106,6 +112,6 @@ Query > Tasks > Insert the Authorization header as: "Bearer eyxxxxxxxx"
 
 ## Considerations
 
-Authorization middleware logic rests inside auth.ts
-
-Seeding and drop database logic was commented for convenience
+- Task routes are all protected by Authorization middleware, a JWT token needs to be sent as Authorization header (Bearer ey...)
+- Authorization middleware logic rests inside auth.ts
+- Seeding and drop database logic was commented for convenience
