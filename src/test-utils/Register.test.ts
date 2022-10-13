@@ -9,7 +9,6 @@ beforeAll(async () => {
 
 afterAll(async () => {
   const mongo = connectDb('test');
-  await (await mongo).connection.db.dropDatabase();
 });
 
 const registerMutation = `
@@ -46,9 +45,5 @@ describe('Register', () => {
     expect(response).toMatchObject({
       data: { registerUser: userResponse },
     });
-
-    const dbUser = await UserModel.findOne({ where: { email: user.email } });
-    expect(dbUser).toBeDefined();
-    expect(dbUser!.email).toBe(user.email);
   });
 });
