@@ -1,10 +1,13 @@
 import { Task, TaskModel } from '../tasks/task.model';
 import { User, UserModel } from '../users/user.model';
+import * as bcrypt from 'bcrypt';
 
 export async function seedDatabase() {
+  const hash = await bcrypt.hash('test', 10);
+
   const defaultUser = new UserModel({
     email: 'test',
-    password: 'test',
+    password: hash,
   } as User);
   await defaultUser.save();
 

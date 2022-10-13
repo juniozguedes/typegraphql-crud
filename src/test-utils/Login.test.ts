@@ -47,9 +47,5 @@ describe('Login', () => {
     expect(response).toMatchObject({
       data: { loginUser: userResponse },
     });
-
-    const dbUser = await UserModel.findOne({ where: { email: user.email } });
-    expect(dbUser).toBeDefined();
-    expect(dbUser!.email).toBe(email);
   });
 });

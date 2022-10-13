@@ -27,8 +27,8 @@ mutation Mutation($registerUser: RegisterUserInput!) {
 describe('Register', () => {
   it('should create user', async () => {
     const user = {
-      email: faker.internet.email(),
-      password: faker.internet.password(),
+      email: 'test',
+      password: 'test',
     };
 
     const response = await gCall({
