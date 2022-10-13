@@ -3,8 +3,8 @@ import { User, UserModel } from '../users/user.model';
 
 export async function seedDatabase() {
   const defaultUser = new UserModel({
-    email: 'test@github.com',
-    password: 's3cr3tp4ssw0rd',
+    email: 'test',
+    password: 'test',
   } as User);
   await defaultUser.save();
 
