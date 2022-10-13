@@ -12,7 +12,7 @@ async function bootstrap() {
     logger.info('Starting bootstrap function');
 
     //Connect to Mongo Database
-    connectDb('production');
+    connectDb('dev');
 
     const schema = await createSchema();
 

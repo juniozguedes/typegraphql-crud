@@ -1,11 +1,3 @@
-Build and run docker:
-
-docker-compose up -d --build
-
-Apollo server will run at:
-
-http://localhost:4000/
-
 # Task API with Typegraphql, Mongo and Docker
 
 ## 💻 Requirements
@@ -22,6 +14,16 @@ Build and run docker:
 
 ```
 docker-compose up -d --build
+```
+
+It can also be ran in local environment:
+
+```
+npm install
+```
+
+```
+npm run dev
 ```
 
 After build, the Apollo server will run at:
@@ -102,16 +104,24 @@ HINT: You can cycle through different types of status by pressing "CTRL + SPACE"
 
 ---
 
-Get all Tasks from logged user
+Get all Tasks from logged user:
+Inside Apollo Sandbox:
 
 ```
-Query > Tasks > Insert the Authorization header as: "Bearer eyxxxxxxxx"
+Query > Tasks > Insert the Authorization header as: "Bearer eyxxxxxxxx" > Send request
 ```
 
 ---
 
+## 📝 Testing
+
+To run the test script:
+
+```
+npm run test
+```
+
 ## Considerations
 
 - Task routes are all protected by Authorization middleware, a JWT token needs to be sent as Authorization header (Bearer ey...)
-- Authorization middleware logic rests inside auth.ts
-- Seeding and drop database logic was commented for convenience
+- Seeding and drop database logic was commented for convenience (except for test environment)
